@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --primary-color: #f0ece4;
+  --text-color-primary: #3d3d3d;
+  --text-color-secondary: #5a5a5a;
+}
+
+@theme {
+  --font-luckiest: "Luckiest Guy", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
+body {
+  @apply font-inter;
+  background-color: var(--primary-color);
+}
