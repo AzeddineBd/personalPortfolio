@@ -11,40 +11,57 @@ const Hero = () => {
 
   useGSAP(() => {
     const tl = gsap.timeline();
-
     const textOne = new SplitText(frontendRef.current, { type: "chars" });
     const textTwo = new SplitText(devRef.current, { type: "chars" });
 
     gsap.defaults({
-      // duration: 0.3,
+      duration: 1,
       // opacity: 0,
-      ease: "power1.inOut",
-      stagger: { each: 0.2, duration: 0.3 },
+      ease: "elastic",
+      stagger: { each: 0.2 },
     });
 
-    tl.from(textOne.chars, {
-      y: -50,
-    });
+    tl.fromTo(
+      textOne.chars,
+      {
+        y: -50,
+        visibility: "hidden",
+      },
+      {
+        y: 0,
+        visibility: "visible",
+      }
+    );
 
-    tl.from(
+    tl.fromTo(
       textTwo.chars,
       {
         y: 50,
+        visibility: "hidden",
+      },
+      {
+        y: 0,
+        visibility: "visible",
       },
       "<"
     );
 
-    tl.from(
+    tl.fromTo(
       iconRef.current,
       {
-        x: 50,
+        x: 35,
+        visibility: "hidden",
+      },
+      {
+        x: 0,
+        visibility: "visible",
       },
       "-=1.5"
     );
   });
 
   return (
-    <section className="lg:max-w-[1200px] md:max-w-[600px] mx-auto">
+    <section className="lg:max-w-[1200px] md:max-w-[600px] mx-auto pt-8">
       {/* Text */}
       <div className="flex flex-col lg:leading-44 md:leading-20 leading-20 p-4 md:p-0">
         <div className="flex items-center justify-end gap-4">

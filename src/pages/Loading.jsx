@@ -62,7 +62,7 @@ const Loading = () => {
         {currentValue}
       </h1>
 
-      <div className="flex h-screen w-full fixed z-10 bar-container">
+      <div className="flex h-screen w-full fixed z-40 bar-container">
         <div className="h-screen w-[100vw] bg-[var(--text-color-primary)] bar"></div>
       </div>
     </div>
