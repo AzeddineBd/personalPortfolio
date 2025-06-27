@@ -3,15 +3,19 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
-const Navbar = () => {
+const Navbar = ({ timeline }) => {
   const navbarRef = useRef(null);
 
   useGSAP(() => {
-    gsap.from(navbarRef.current, {
-      duration: 1,
+    const tl = gsap.timeline();
+    tl.from(navbarRef.current, {
       y: -100,
+      opacity: 0,
+      duration: 0.8,
     });
-  });
+
+    timeline.add(tl, "-=1.1");
+  }, []);
 
   return (
     <nav ref={navbarRef} className=" bg-[var(--primary-color)] z-30 relative">

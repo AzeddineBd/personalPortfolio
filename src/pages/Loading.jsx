@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const Loading = () => {
+const Loading = ({ timeline }) => {
   // Function StartLoader
 
   const counterRef = useRef(null);
@@ -35,7 +35,7 @@ const Loading = () => {
   // Gsap Animation
   useGSAP(() => {
     const tl = gsap.timeline({
-      delay: 3.5,
+      delay: 2.5,
       onComplete: () => {
         const container = document.querySelector(".bar-container");
         if (container) container.style.display = "none";
@@ -51,6 +51,9 @@ const Loading = () => {
       duration: 1.5,
       y: "100vh",
     });
+
+    // Add masterTl
+    timeline.add(tl);
   });
 
   return (

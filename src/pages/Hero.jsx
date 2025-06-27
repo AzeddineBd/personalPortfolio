@@ -4,10 +4,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 
-const Hero = () => {
+const Hero = ({ timeline }) => {
   const frontendRef = useRef(null);
   const devRef = useRef(null);
   const iconRef = useRef(null);
+  const imgRef = useRef(null);
+  const parRef = useRef(null);
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -17,7 +19,7 @@ const Hero = () => {
     gsap.defaults({
       duration: 1,
       // opacity: 0,
-      ease: "elastic",
+      ease: "power1.inOut",
       stagger: { each: 0.2 },
     });
 
@@ -58,6 +60,28 @@ const Hero = () => {
       },
       "-=1.5"
     );
+
+    tl.from(
+      imgRef.current,
+      {
+        clipPath: "inset(0% 0% 100% 0%)",
+        opacity: 0,
+        duration: 1,
+      },
+      "-=2"
+    );
+
+    tl.from(
+      parRef.current,
+      {
+        x: 50,
+        opacity: 0,
+      },
+      "-=2"
+    );
+
+    // Add masterTl
+    timeline.add(tl, "-=0.5");
   });
 
   return (
@@ -87,12 +111,16 @@ const Hero = () => {
       <div className="flex items-center justify-center gap-8 mt-20 flex-col md:flex-row">
         <div>
           <img
+            ref={imgRef}
             src="./assets/man.jpg"
             alt="About Me"
             className="min-w-[200px] max-w-[300px] h-[250px] md:h-[320px] object-cover"
           />
         </div>
-        <p className="min-w-[150px] max-w-[400px] md:text-xl font-semibold text-[var(--text-color-secondary)] px-4 md:px-0">
+        <p
+          ref={parRef}
+          className="min-w-[150px] max-w-[400px] md:text-xl font-semibold text-[var(--text-color-secondary)] px-4 md:px-0"
+        >
           Hi, ipsum dolor sit amet consectetur adipisicing elit. Saepe
           excepturi, iste fugit enim nisi officiis commodi officia sunt
           dignissimos.
